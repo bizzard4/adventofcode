@@ -6,6 +6,7 @@ public class A1 {
 		try {
 			FileReader fr = new FileReader("a1.txt");
 			int c = fr.read();
+			int i = 1;
 			int accumulator = 0;
 			while (c != -1) {
 				char character = (char)c;
@@ -17,6 +18,12 @@ public class A1 {
 				{
 					accumulator--;
 				}
+				
+				if (accumulator == -1) {
+					System.out.println("Basemnet:" + i);
+				}
+				
+				i++;
 				c = fr.read();
 			}
 			

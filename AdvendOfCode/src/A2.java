@@ -8,6 +8,7 @@ public class A2 {
 			BufferedReader br = new BufferedReader(new FileReader("a2.txt"));
 			String line;
 			int paper = 0;
+			int ribon = 0;
 			while ((line = br.readLine()) != null) {
 				// 0 : l
 				// 1 : w
@@ -22,12 +23,21 @@ public class A2 {
 				
 				// Get smallest size
 				int extra = Math.min(side1, Math.min(side2, side3));
+				if (extra == side1) {
+					ribon += dims[0]*2 + dims[1]*2;
+				} else if (extra == side2) {
+					ribon += dims[1]*2 + dims[2]*2;
+				} else if (extra == side3) {
+					ribon += dims[2]*2 + dims[0]*2;
+				}
+				ribon += dims[0] * dims[1] * dims[2];
 				
 				// Total paper required.
 				paper += extra + surface;
 			}
 			
 			System.out.println(paper);
+			System.out.println(ribon);
 		
 		} catch (Exception e) {
 			e.printStackTrace();

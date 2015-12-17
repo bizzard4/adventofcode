@@ -8,8 +8,12 @@ public class A6 {
 			BufferedReader br = new BufferedReader(new FileReader("a6.txt"));
 			String line;
 			
-			int lit = 0;
-			boolean[][] lights = new boolean[1000][1000];
+			int[][] lights = new int[1000][1000];
+			for (int x = 0; x < 1000; x++) {
+				for (int y = 0; y < 1000; y++) {
+					lights[x][y] = 0;
+				}
+			}
 			
 			while ((line = br.readLine()) != null) {
 				
@@ -36,19 +40,15 @@ public class A6 {
 				if (line.startsWith("turn on")) {	
 					for (int x = fromX; x <= toX; x++) {
 						for (int y = fromY; y <= toY; y++) {
-							if (lights[x][y] == false) {
-								lights[x][y] = true;
-								lit++;
-							}
+							lights[x][y]++;
 						}
 					}
 				}
 				else if (line.startsWith("turn off")) {
 					for (int x = fromX; x <= toX; x++) {
 						for (int y = fromY; y <= toY; y++) {
-							if (lights[x][y] == true) {
-								lights[x][y] = false;
-								lit--;
+							if (lights[x][y] > 0) {
+								lights[x][y]--;
 							}
 						}
 					}
@@ -56,19 +56,21 @@ public class A6 {
 				else if (line.startsWith("toggle")) {
 					for (int x = fromX; x <= toX; x++) {
 						for (int y = fromY; y <= toY; y++) {
-							if (lights[x][y] == false) {
-								lights[x][y] = true;
-								lit++;
-							} else {
-								lights[x][y] = false;
-								lit--;
-							}
+							lights[x][y]++;
+							lights[x][y]++;
 						}
 					}
 				}
 			}
 			
-			System.out.println(lit);
+			// Count total brightness
+			long brightness = 0;
+			for (int x = 0; x < 1000; x++) {
+				for (int y = 0; y < 1000; y++) {
+					brightness += lights[x][y];
+				}
+			}
+			System.out.println(brightness);
 		
 		} catch (Exception e) {
 			e.printStackTrace();

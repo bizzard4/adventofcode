@@ -20,7 +20,7 @@ public class A4 {
 				String md5 = getMD5(toHash);
 				
 				// Win condition
-				if (md5.startsWith("00000")) {
+				if (md5.startsWith("000000")) {
 					found = true;
 					System.out.println(toHash);
 				}

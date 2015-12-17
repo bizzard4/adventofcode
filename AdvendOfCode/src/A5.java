@@ -22,9 +22,8 @@ public class A5 {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
-	
+		
 	public static boolean containIllegalPair(String line) {
 		return line.contains("ab") || line.contains("cd") || line.contains("pq") || line.contains("xy");
 	}
